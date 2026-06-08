@@ -1,3 +1,5 @@
+import AddToCartButton from "@/components/AddToCartButton";
+
 const categories = [
   {
     title: "Fish",
@@ -191,7 +193,16 @@ export default function Home() {
                     <strong>{product.price}</strong>
                     <small>{product.oldPrice}</small>
                   </div>
-                  <button className="add-button">Add to cart</button>
+                  <AddToCartButton
+                    product={{
+                      id: product.name,
+                      name: product.name,
+                      detail: product.detail,
+                      price: product.price,
+                      unit: product.detail,
+                      image: product.image,
+                    }}
+                  />
                 </div>
               </article>
             ))}

@@ -3,6 +3,8 @@ import Image from "next/image";
 import Link from "next/link";
 import DiscountOffer from "@/components/DiscountOffer";
 import SearchOverlay from "@/components/SearchOverlay";
+import CartProvider from "@/components/CartProvider";
+import CartButton from "@/components/CartButton";
 import "./globals.css";
 
 const inter = Inter({
@@ -227,6 +229,7 @@ export default function RootLayout({ children }) {
   return (
     <html lang="en" className={`${inter.variable} ${playfair.variable}`}>
       <body>
+        <CartProvider>
         <header className="site-header">
           <div className="announcement-bar">
             <span>Free chilled shipping over ৳ 250</span>
@@ -260,10 +263,7 @@ export default function RootLayout({ children }) {
                 <a className="icon-button" href="#" aria-label="Wishlist">
                   <Icon name="heart" />
                 </a>
-                <a className="icon-button cart-button" href="#" aria-label="Cart">
-                  <Icon name="cart" />
-                  <span>2</span>
-                </a>
+                <CartButton />
                 <a className="icon-button account-link" href="#" aria-label="Account">
                   <Icon name="user" />
                 </a>
@@ -383,6 +383,7 @@ export default function RootLayout({ children }) {
           </div>
           <div className="footer-waves" aria-hidden="true"></div>
         </footer>
+        </CartProvider>
       </body>
     </html>
   );

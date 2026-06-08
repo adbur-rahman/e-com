@@ -303,6 +303,256 @@ ul {
   font-weight: 900;
 }
 
+.cart-button {
+  border: 0;
+  background: transparent;
+  cursor: pointer;
+}
+
+.cart-drawer-shell {
+  position: fixed;
+  inset: 0;
+  z-index: 250;
+}
+
+.cart-page-content {
+  transition: filter 0.2s ease;
+}
+
+.cart-page-content-blurred {
+  filter: blur(6px);
+  pointer-events: none;
+  user-select: none;
+}
+
+.cart-drawer-backdrop {
+  position: absolute;
+  inset: 0;
+  border: 0;
+  background: rgba(255, 255, 255, 0.42);
+  backdrop-filter: blur(5px);
+  -webkit-backdrop-filter: blur(5px);
+  cursor: pointer;
+}
+
+.cart-drawer {
+  position: absolute;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  display: grid;
+  grid-template-rows: auto auto minmax(0, 1fr) auto;
+  width: min(100%, 470px);
+  background: #fff;
+  box-shadow: -16px 0 42px rgba(20, 20, 20, 0.15);
+}
+
+.cart-drawer-header {
+  display: flex;
+  justify-content: space-between;
+  gap: 20px;
+  padding: 26px 20px 12px;
+}
+
+.cart-drawer-header h2 {
+  margin: 0;
+  font-size: 42px;
+  line-height: 1;
+  font-weight: 600;
+}
+
+.cart-drawer-header p {
+  margin: 12px 0 0;
+  font-size: 13px;
+}
+
+.cart-drawer-header button {
+  position: relative;
+  width: 30px;
+  height: 30px;
+  border: 0;
+  background: transparent;
+  cursor: pointer;
+}
+
+.cart-drawer-header button::before,
+.cart-drawer-header button::after {
+  position: absolute;
+  top: 14px;
+  left: 3px;
+  width: 25px;
+  height: 1px;
+  content: "";
+  background: #222;
+}
+
+.cart-drawer-header button::before {
+  transform: rotate(45deg);
+}
+
+.cart-drawer-header button::after {
+  transform: rotate(-45deg);
+}
+
+.cart-progress {
+  display: grid;
+  grid-template-columns: 1fr 0.55fr 2.4fr;
+  gap: 2px;
+  padding: 0 20px;
+}
+
+.cart-progress span {
+  height: 10px;
+  background: #0d32bd;
+}
+
+.cart-progress span:first-child {
+  border-radius: 8px 0 0 8px;
+}
+
+.cart-progress span:last-child {
+  border-radius: 0 8px 8px 0;
+  background: #ff6859;
+}
+
+.cart-drawer-items {
+  overflow-y: auto;
+  padding: 18px 20px;
+}
+
+.cart-line {
+  display: grid;
+  grid-template-columns: 108px minmax(0, 1fr) auto;
+  gap: 18px;
+  padding: 10px 0 16px;
+  border-bottom: 1px solid #aaa;
+}
+
+.cart-line-image {
+  width: 108px;
+  aspect-ratio: 1;
+  background-color: #eee;
+  background-position: center;
+  background-size: cover;
+}
+
+.cart-line-info h3 {
+  margin: 1px 0 10px;
+  font-size: 20px;
+  font-weight: 400;
+}
+
+.cart-line-info small {
+  color: #929292;
+}
+
+.cart-line-info > strong {
+  display: block;
+  margin-top: 10px;
+  font-weight: 500;
+}
+
+.cart-line-controls {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin-top: 10px;
+}
+
+.cart-line-controls > span {
+  min-width: 74px;
+  padding: 4px 10px;
+  border: 2px solid #0d32bd;
+  color: #0d32bd;
+  text-align: center;
+}
+
+.cart-quantity {
+  display: grid;
+  grid-template-columns: repeat(3, 28px);
+  border: 2px solid #0d32bd;
+}
+
+.cart-quantity button,
+.cart-quantity b {
+  display: grid;
+  min-height: 25px;
+  place-items: center;
+  border: 0;
+  background: #fff;
+  color: #0d32bd;
+  font-weight: 400;
+}
+
+.cart-quantity button {
+  cursor: pointer;
+}
+
+.cart-line > strong {
+  align-self: center;
+  white-space: nowrap;
+}
+
+.cart-remove {
+  border: 0;
+  background: transparent;
+  color: #ff6859;
+  font-size: 22px;
+  cursor: pointer;
+}
+
+.cart-empty {
+  display: grid;
+  min-height: 240px;
+  place-items: center;
+  color: #555;
+}
+
+.cart-empty button {
+  border: 0;
+  background: #0d32bd;
+  color: #fff;
+  padding: 12px 24px;
+  cursor: pointer;
+}
+
+.cart-drawer-footer {
+  padding: 20px;
+  background: #f4f3f3;
+}
+
+.cart-drawer-footer > div {
+  display: flex;
+  justify-content: space-between;
+  font-size: 17px;
+}
+
+.cart-drawer-footer p {
+  margin: 14px 0 0;
+  font-size: 13px;
+}
+
+.cart-drawer-footer .cart-checkout-message {
+  color: #138a2e;
+  font-weight: 700;
+}
+
+.cart-drawer-footer > button {
+  width: 100%;
+  min-height: 44px;
+  margin-top: 20px;
+  border: 0;
+  background: #0d32bd;
+  color: #fff;
+  font-size: 16px;
+  cursor: pointer;
+}
+
+.cart-drawer-footer > button:disabled {
+  cursor: not-allowed;
+  opacity: 0.45;
+}
+
 .search-overlay {
   background: var(--white);
   position: fixed;
@@ -1920,6 +2170,50 @@ ul {
   background: #b4926d;
 }
 
+.fish-advantages {
+  min-height: 400px;
+  display: grid;
+  grid-template-columns: 62fr 38fr;
+  gap: 34px;
+  align-items: stretch;
+  margin-top: 64px;
+}
+
+.fish-advantages-copy {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  padding: 32px;
+}
+
+.fish-advantages-copy h2 {
+  color: #2e2d2c;
+  font-size: clamp(34px, 3vw, 48px);
+  line-height: 1.1;
+  margin-bottom: 14px;
+}
+
+.fish-advantages-copy p {
+  color: #404040;
+  font-size: 14px;
+  line-height: 1.55;
+}
+
+.fish-advantages-copy a {
+  color: #0327b2;
+  text-decoration: underline;
+}
+
+.fish-advantages-image {
+  min-height: 400px;
+  position: relative;
+  overflow: hidden;
+}
+
+.fish-advantages-image img {
+  object-fit: cover;
+}
+
 .filter-save {
   border: 0;
   background: #caa57b;
@@ -2356,9 +2650,43 @@ ul {
   .fish-category-strip a {
     scroll-snap-align: start;
   }
+
+  .fish-advantages {
+    grid-template-columns: 1fr;
+    gap: 24px;
+  }
+
+  .fish-advantages-copy {
+    padding: 30px 0;
+  }
+
+  .fish-advantages-image {
+    min-height: 400px;
+  }
 }
 
 @media (max-width: 768px) {
+  .cart-drawer {
+    width: 100%;
+  }
+
+  .cart-drawer-header h2 {
+    font-size: 34px;
+  }
+
+  .cart-line {
+    grid-template-columns: 86px minmax(0, 1fr);
+    gap: 12px;
+  }
+
+  .cart-line-image {
+    width: 86px;
+  }
+
+  .cart-line > strong {
+    display: none;
+  }
+
   .announcement-bar {
     flex-direction: column;
     gap: 4px;
@@ -2620,6 +2948,28 @@ ul {
 
   .fish-category-name {
     font-size: 14px;
+  }
+
+  .fish-advantages {
+    min-height: 0;
+    margin-top: 44px;
+  }
+
+  .fish-advantages-copy {
+    padding: 20px 0;
+  }
+
+  .fish-advantages-copy h2 {
+    font-size: 29px;
+  }
+
+  .fish-advantages-copy p {
+    font-size: 13px;
+    line-height: 1.55;
+  }
+
+  .fish-advantages-image {
+    min-height: 290px;
   }
 
   .discount-teaser {

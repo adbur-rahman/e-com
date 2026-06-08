@@ -189,8 +189,42 @@ export default function FishPage() {
       <FishIntro />
       <section className="plp-page">
         <FishProductBrowser products={fishProducts} />
+        <FishAdvantages />
       </section>
     </>
+  );
+}
+
+function FishAdvantages() {
+  return (
+    <section className="fish-advantages">
+      <div className="fish-advantages-copy">
+        <h2>Your advantages at a glance!</h2>
+        <p>
+          Freshness and quality: At HONEST CATCH we guarantee first-class
+          premium fish products that meet the highest quality standards.
+          Sustainability: We rely on sustainable fishing and farming to protect
+          marine resources and support future generations. Convenience: Order
+          from the comfort of your home and fill your{" "}
+          <a href="#">freezer</a> with high-quality, <a href="#">frozen</a>{" "}
+          seafood. Variety: Discover a wide selection of fish species and
+          products to suit your individual taste. Top chefs trust us: We supply
+          the most renowned chefs in Germany.{" "}
+          <strong>Buy fish at HONEST CATCH:</strong> Experience the advantages
+          of buying fish at HONEST CATCH and enjoy maximum enjoyment with a
+          clear conscience. Need <a href="#">recipe</a> inspiration? Then head
+          to our world of enjoyment.
+        </p>
+      </div>
+      <div className="fish-advantages-image">
+        <Image
+          src="/fish-advantages-mobile.jpg"
+          alt="Two fresh sea bream on paper"
+          fill
+          sizes="(max-width: 1024px) 100vw, 38vw"
+        />
+      </div>
+    </section>
   );
 }
 
