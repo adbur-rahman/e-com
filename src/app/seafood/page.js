@@ -1,4 +1,4 @@
-import SeafoodFilterDrawer from "@/components/SeafoodFilterDrawer";
+import FishProductBrowser from "@/components/FishProductBrowser";
 
 const seafoodProducts = [
   {
@@ -206,22 +206,6 @@ const seafoodCatalog = seafoodProducts.filter(
     products.findLastIndex((item) => item.slug === product.slug) === index
 );
 
-function HeartIcon() {
-  return (
-    <svg viewBox="0 0 24 24" aria-hidden="true">
-      <path d="M12 20.2 5.8 14C2 10.2 4.6 4 9.9 5.1c.9.2 1.7.7 2.1 1.4.5-.7 1.2-1.2 2.1-1.4 5.3-1.1 7.9 5.1 4.1 8.9L12 20.2Z" />
-    </svg>
-  );
-}
-
-function SnowflakeIcon() {
-  return (
-    <svg viewBox="0 0 24 24" aria-hidden="true">
-      <path d="M12 3v18M5.6 6.2l12.8 11.6M18.4 6.2 5.6 17.8M4 12h16" />
-    </svg>
-  );
-}
-
 export const metadata = {
   title: "Seafood | Honest Catch",
   description: "Shop premium seafood with filters, sorting, and fresh offers.",
@@ -230,68 +214,7 @@ export const metadata = {
 export default function SeafoodPage() {
   return (
     <section className="plp-page">
-      <div className="plp-toolbar">
-        <SeafoodFilterDrawer />
-
-        <div className="plp-controls">
-          <span>70 Products</span>
-          <button className="sort-button" type="button">
-            Sort by
-            <svg viewBox="0 0 24 24" aria-hidden="true">
-              <path d="m6 9 6 6 6-6" />
-            </svg>
-          </button>
-        </div>
-      </div>
-
-      <div className="plp-grid">
-        {seafoodCatalog.map((product) => (
-          <article className="plp-card" key={product.name}>
-            <ProductImage product={product} />
-            <ProductInfo product={product} />
-          </article>
-        ))}
-      </div>
+      <FishProductBrowser products={seafoodCatalog} showQuiz={false} />
     </section>
-  );
-}
-
-function ProductImage({ product }) {
-  return (
-    <div className="plp-image">
-      <span className="plp-freeze">
-        <SnowflakeIcon />
-      </span>
-      {product.badge && (
-        <span className={`plp-badge ${product.badge === "Sold out" ? "sold-out" : ""}`}>
-          {product.badge}
-        </span>
-      )}
-      {product.certified && <span className="plp-certified">{product.certified}</span>}
-      <a
-        href={`/seafood/${product.slug}`}
-        className="plp-plate"
-        style={{ backgroundImage: `url("${product.image}")` }}
-        aria-label={`View ${product.name}`}
-      ></a>
-      <button type="button" className="plp-heart" aria-label={`Save ${product.name}`}>
-        <HeartIcon />
-      </button>
-    </div>
-  );
-}
-
-function ProductInfo({ product }) {
-  return (
-    <div className="plp-info">
-      <a href={`/seafood/${product.slug}`}>
-        <h2>{product.name}</h2>
-      </a>
-      <p>{product.detail}</p>
-      <div className="plp-price">
-        <strong>{product.price}</strong>
-        {product.unit && <span>{product.unit}</span>}
-      </div>
-    </div>
   );
 }

@@ -1,6 +1,7 @@
 import { Inter, Playfair_Display } from "next/font/google";
 import Image from "next/image";
 import Link from "next/link";
+import DiscountOffer from "@/components/DiscountOffer";
 import SearchOverlay from "@/components/SearchOverlay";
 import "./globals.css";
 
@@ -125,46 +126,98 @@ function SocialIcon({ name }) {
   const icons = {
     instagram: (
       <>
-        <defs>
-          <linearGradient id="instagram-gradient" x1="4" y1="20" x2="20" y2="4">
-            <stop offset="0" stopColor="#feda75" />
-            <stop offset="0.28" stopColor="#fa7e1e" />
-            <stop offset="0.5" stopColor="#d62976" />
-            <stop offset="0.74" stopColor="#962fbf" />
-            <stop offset="1" stopColor="#4f5bd5" />
-          </linearGradient>
-        </defs>
         <rect
-          x="3"
-          y="3"
-          width="18"
-          height="18"
+          x="3.5"
+          y="3.5"
+          width="17"
+          height="17"
           rx="5"
-          fill="url(#instagram-gradient)"
+          fill="none"
+          stroke="#0f31b6"
+          strokeWidth="2"
         />
-        <circle cx="12" cy="12" r="4" fill="none" stroke="#ffffff" strokeWidth="1.7" />
-        <circle cx="17" cy="7" r="1.2" fill="#ffffff" />
+        <circle cx="12" cy="12" r="4" fill="none" stroke="#0f31b6" strokeWidth="2" />
+        <circle cx="17.2" cy="6.8" r="1.2" fill="#0f31b6" />
       </>
     ),
     facebook: (
       <>
-        <circle cx="12" cy="12" r="9" fill="#1877f2" />
+        <circle cx="12" cy="12" r="10" fill="#0f31b6" />
         <path
-          d="M13.6 21v-6.6h2.2l.4-2.6h-2.6v-1.7c0-.8.3-1.3 1.4-1.3h1.4V6.5c-.7-.1-1.4-.1-2.1-.1-2.2 0-3.8 1.4-3.8 3.9v1.5H8.1v2.6h2.4V21h3.1Z"
+          d="M13.5 22v-8h2.7l.4-3h-3.1V9.1c0-.9.3-1.5 1.6-1.5h1.7V5c-.8-.1-1.7-.2-2.5-.2-2.7 0-4.5 1.6-4.5 4.6V11H7v3h2.8v8h3.7Z"
           fill="#ffffff"
         />
       </>
     ),
     youtube: (
       <>
-        <rect x="2.5" y="6" width="19" height="12" rx="3.5" fill="#ff0000" />
-        <path d="m10.4 15.2 5-3.2-5-3.2v6.4Z" fill="#ffffff" />
+        <rect x="1" y="5" width="22" height="14" rx="4.5" fill="#0f31b6" />
+        <path d="m10 16 6-4-6-4v8Z" fill="#ffffff" />
+      </>
+    ),
+    tiktok: (
+      <>
+        <rect x="3" y="3" width="18" height="18" rx="4" fill="#0f31b6" />
+        <path
+          d="M13.6 6.5c.3 1.5 1.2 2.4 2.8 2.7v2a5.9 5.9 0 0 1-2.8-.8v3.4a3.5 3.5 0 1 1-3-3.4v2.1a1.5 1.5 0 1 0 1 1.4V6.5h2Z"
+          fill="#ffffff"
+        />
+      </>
+    ),
+    linkedin: (
+      <>
+        <rect x="3" y="3" width="18" height="18" rx="2.5" fill="#0f31b6" />
+        <circle cx="8" cy="9" r="1.3" fill="#ffffff" />
+        <path d="M6.8 11h2.4v6H6.8v-6Zm4 0h2.3v.9c.7-.8 1.5-1.2 2.5-1.2 2 0 2.8 1.3 2.8 3.5V17H16v-2.5c0-1.1-.3-1.7-1.2-1.7-1 0-1.5.7-1.5 2V17h-2.5v-6Z" fill="#ffffff" />
       </>
     ),
   };
 
   return (
     <svg viewBox="0 0 24 24" aria-hidden="true">
+      {icons[name]}
+    </svg>
+  );
+}
+
+function PaymentIcon({ name }) {
+  const icons = {
+    visa: (
+      <>
+        <path opacity=".07" d="M35 0H3C1.3 0 0 1.3 0 3v18c0 1.7 1.4 3 3 3h32c1.7 0 3-1.3 3-3V3c0-1.7-1.4-3-3-3Z" />
+        <path fill="#fff" d="M35 1c1.1 0 2 .9 2 2v18c0 1.1-.9 2-2 2H3c-1.1 0-2-.9-2-2V3c0-1.1.9-2 2-2h32Z" />
+        <text x="19" y="15.5" fill="#142688" fontSize="8" fontWeight="900" textAnchor="middle">VISA</text>
+      </>
+    ),
+    mastercard: (
+      <>
+        <path opacity=".07" d="M35 0H3C1.3 0 0 1.3 0 3v18c0 1.7 1.4 3 3 3h32c1.7 0 3-1.3 3-3V3c0-1.7-1.4-3-3-3Z" />
+        <path fill="#fff" d="M35 1c1.1 0 2 .9 2 2v18c0 1.1-.9 2-2 2H3c-1.1 0-2-.9-2-2V3c0-1.1.9-2 2-2h32Z" />
+        <circle fill="#eb001b" cx="15" cy="12" r="7" />
+        <circle fill="#f79e1b" cx="23" cy="12" r="7" />
+        <path fill="#ff5f00" d="M22 12c0-2.4-1.2-4.5-3-5.7-1.8 1.3-3 3.4-3 5.7s1.2 4.5 3 5.7c1.8-1.2 3-3.3 3-5.7Z" />
+      </>
+    ),
+    amex: (
+      <>
+        <path opacity=".07" d="M35 0H3C1.3 0 0 1.3 0 3v18c0 1.7 1.4 3 3 3h32c1.7 0 3-1.3 3-3V3c0-1.7-1.4-3-3-3Z" />
+        <path fill="#006fcf" d="M35 1c1.1 0 2 .9 2 2v18c0 1.1-.9 2-2 2H3c-1.1 0-2-.9-2-2V3c0-1.1.9-2 2-2h32Z" />
+        <text x="19" y="10.7" fill="#fff" fontSize="5.7" fontWeight="900" textAnchor="middle">AMERICAN</text>
+        <text x="19" y="16.4" fill="#fff" fontSize="6.7" fontWeight="900" textAnchor="middle">EXPRESS</text>
+      </>
+    ),
+    paypal: (
+      <>
+        <path opacity=".07" d="M35 0H3C1.3 0 0 1.3 0 3v18c0 1.7 1.4 3 3 3h32c1.7 0 3-1.3 3-3V3c0-1.7-1.4-3-3-3Z" />
+        <path fill="#fff" d="M35 1c1.1 0 2 .9 2 2v18c0 1.1-.9 2-2 2H3c-1.1 0-2-.9-2-2V3c0-1.1.9-2 2-2h32Z" />
+        <path fill="#003087" d="M23.9 8.3c.2-1 0-1.7-.6-2.3-.6-.7-1.7-1-3.1-1h-4.1c-.3 0-.5.2-.6.5L14 15.6c0 .2.1.4.3.4H17l.4-3.4 1.8-2.2 4.7-2.1Z" />
+        <path fill="#3086c8" d="M23.9 8.3l-.2.2c-.5 2.8-2.2 3.8-4.6 3.8H18c-.3 0-.5.2-.6.5l-.6 3.9-.2 1c0 .2.1.4.3.4H19c.3 0 .5-.2.5-.4l.4-2.5c0-.2.3-.4.5-.4h.3c2.1 0 3.7-.8 4.1-3.2.2-1 .1-1.8-.4-2.4-.1-.5-.3-.7-.5-.8Z" />
+      </>
+    ),
+  };
+
+  return (
+    <svg viewBox="0 0 38 24" role="img" aria-label={name}>
       {icons[name]}
     </svg>
   );
@@ -221,6 +274,8 @@ export default function RootLayout({ children }) {
 
         <main>{children}</main>
 
+        <DiscountOffer />
+
         <nav className="mobile-bottom-nav" aria-label="Mobile quick navigation">
           <a href="#">Home</a>
           <a href="#">Search</a>
@@ -229,48 +284,104 @@ export default function RootLayout({ children }) {
         </nav>
 
         <footer className="site-footer">
-          <div className="container footer-grid">
-            <div>
-              <Link href="/" className="brand footer-brand" aria-label="Honest Catch home">
-                <BrandLogo />
-              </Link>
-              <p>
-                Premium seafood selected for flavor, traceability, and reliable
-                chilled delivery.
-              </p>
-            </div>
-            <div>
-              <h3>Company</h3>
-              <a href="#">About</a>
-              <a href="#">Sustainability</a>
-              <a href="#">Careers</a>
-            </div>
-            <div>
-              <h3>Customer</h3>
-              <a href="#">FAQ</a>
-              <a href="#">Shipping</a>
-              <a href="#">Returns</a>
-            </div>
-            <div>
-              <h3>Social</h3>
-              <div className="social-links">
-                <a href="#" aria-label="Instagram">
-                  <SocialIcon name="instagram" />
-                </a>
-                <a href="#" aria-label="Facebook">
-                  <SocialIcon name="facebook" />
-                </a>
-                <a href="#" aria-label="YouTube">
-                  <SocialIcon name="youtube" />
-                </a>
+          <section className="footer-press" aria-labelledby="known-by-title">
+            <div className="footer-press-inner">
+              <h2 id="known-by-title">Known by</h2>
+              <div className="press-logos" aria-label="Press mentions">
+                {[
+                  ["press-spiegel.png", "Der Spiegel"],
+                  ["press-award.png", "German Online Shop Award 2025"],
+                  ["press-taste.png", "The Taste"],
+                  ["press-frankfurter.png", "Frankfurter Allgemeine"],
+                  ["press-freaks.png", "Freaks to Table"],
+                  ["press-galileo.png", "Galileo"],
+                  ["press-slowfood.png", "Slow Food"],
+                  ["press-gala.png", "Gala"],
+                  ["press-feinschmecker.png", "Der Feinschmecker"],
+                  ["press-focus.png", "Focus"],
+                ].map(([src, alt]) => (
+                  <span key={src}>
+                    <Image src={`/${src}`} alt={alt} width={180} height={110} />
+                  </span>
+                ))}
               </div>
-              <div className="payment-icons" aria-label="Accepted payments">
-                <span>Visa</span>
-                <span>MC</span>
-                <span>PayPal</span>
+            </div>
+          </section>
+
+          <div className="footer-fish-badge" aria-hidden="true"></div>
+
+          <div className="footer-main">
+            <div className="footer-inner">
+              <div className="footer-grid">
+                <div className="footer-column">
+                  <h3>Information</h3>
+                  <a href="#">GTC</a>
+                  <a href="#">Right of withdrawal</a>
+                  <a href="#">GDPR</a>
+                  <a href="#">Imprint</a>
+                  <a href="#">Cookies</a>
+                  <a href="#">Accessibility</a>
+                  <a href="#">Accessibility Assistance</a>
+                </div>
+                <div className="footer-column">
+                  <h3>Service</h3>
+                  <a href="#">Contact</a>
+                  <a href="#">Shipping conditions &amp; payment</a>
+                  <a href="#">Packaging</a>
+                  <a href="#">Click &amp; Collect</a>
+                  <a href="#">Refer a friend</a>
+                </div>
+                <div className="footer-column">
+                  <h3>HONEST CATCH</h3>
+                  <a href="#">About Us</a>
+                  <a href="#">Our promise</a>
+                  <a href="#">Career</a>
+                  <a href="#">News</a>
+                  <a href="#">Wholesale</a>
+                </div>
+                <div className="footer-newsletter">
+                  <h3>Newsletter</h3>
+                  <p>
+                    Benefit from discounts, new products &amp; events. Register
+                    now and receive a 10% discount on your first order.
+                  </p>
+                  <form>
+                    <label htmlFor="footer-email">Email address</label>
+                    <input id="footer-email" type="email" placeholder="Email address" />
+                    <button type="submit">Sign up</button>
+                  </form>
+                </div>
+              </div>
+
+              <div className="footer-lower">
+                <div>
+                  <h3>Follow us</h3>
+                  <div className="social-links">
+                    {["instagram", "facebook", "youtube", "tiktok", "linkedin"].map((name) => (
+                      <a href="#" aria-label={name} key={name}>
+                        <SocialIcon name={name} />
+                      </a>
+                    ))}
+                  </div>
+                  <small>*Prices include VAT plus shipping costs</small>
+                </div>
+                <div>
+                  <h3>Pay with</h3>
+                  <div className="payment-icons" aria-label="Accepted payments">
+                    {["visa", "mastercard", "amex", "paypal"].map((name) => (
+                      <PaymentIcon name={name} key={name} />
+                    ))}
+                  </div>
+                  <small>©FOOD NETWORK AGRO 2026</small>
+                </div>
+                <div className="footer-shipping">
+                  <h3>Shipping</h3>
+                  <Image src="/footer-go-shipping.png" alt="GO! shipping" width={52} height={30} />
+                </div>
               </div>
             </div>
           </div>
+          <div className="footer-waves" aria-hidden="true"></div>
         </footer>
       </body>
     </html>

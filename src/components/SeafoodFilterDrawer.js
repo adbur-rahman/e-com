@@ -1,24 +1,24 @@
 "use client";
 
-import { useState } from "react";
-
-const productTypes = [
-  "Caviar (1)",
-  "Crustaceans (17)",
-  "Gyoza (1)",
-  "Shellfish (9)",
-  "Shrimp (27)",
-  "Squids (7)",
-];
+import { useEffect, useState } from "react";
 
 const filterGroups = [
-  "Genus",
-  "Certification",
-  "Country of origin",
-  "Origin",
-  "Brand",
-  "Peel",
-  "Portioning",
+  {
+    name: "Product Type",
+    options: ["Fish", "Crustaceans", "Shellfish", "Shrimp", "Squids", "Prepared food"],
+  },
+  { name: "Product Art", options: ["Fillet", "Whole", "Tail", "Steak", "Soup"] },
+  { name: "Genus", options: ["Salmon", "Tuna", "Lobster", "Shrimp", "Mussel", "Octopus"] },
+  { name: "Certification", options: ["BIO", "MSC", "ASC"] },
+  { name: "Country of origin", options: ["Germany", "Canada", "Spain", "New Zealand"] },
+  { name: "Origin", options: ["Wild catch", "Aquaculture"] },
+  { name: "Delivery condition", options: ["Frozen", "Fresh", "Pre-cooked"] },
+  { name: "Brand", options: ["HONEST CATCH", "GOOD GAMBA", "Loch Duart"] },
+  { name: "Skin", options: ["With skin", "Without skin"] },
+  { name: "Portioning", options: ["Single portion", "Multiple portions", "Whole side"] },
+  { name: "Refinement", options: ["Natural", "Smoked", "Marinated"] },
+  { name: "Preparation", options: ["Raw", "Cooked", "Ready to eat"] },
+  { name: "Unit", options: ["Under 200 g", "200 g - 500 g", "Over 500 g"] },
 ];
 
 function FilterIcon() {
@@ -40,8 +40,49 @@ function Chevron({ open = false }) {
   );
 }
 
-export default function SeafoodFilterDrawer() {
+export default function SeafoodFilterDrawer({ selectedFilters = {}, onApply }) {
   const [isOpen, setIsOpen] = useState(false);
+  const [openGroups, setOpenGroups] = useState(["Product Type"]);
+  const [draftFilters, setDraftFilters] = useState(selectedFilters);
+
+  useEffect(() => {
+    if (isOpen) {
+      setDraftFilters(selectedFilters);
+    }
+  }, [isOpen, selectedFilters]);
+
+  function toggleGroup(group) {
+    setOpenGroups((groups) =>
+      groups.includes(group) ? groups.filter((item) => item !== group) : [...groups, group]
+    );
+  }
+
+  function toggleOption(group, option) {
+    setDraftFilters((filters) => {
+      const selected = filters[group] ?? [];
+      const nextSelected = selected.includes(option)
+        ? selected.filter((item) => item !== option)
+        : [...selected, option];
+
+      if (nextSelected.length === 0) {
+        const { [group]: unused, ...remainingFilters } = filters;
+        void unused;
+        return remainingFilters;
+      }
+
+      return { ...filters, [group]: nextSelected };
+    });
+  }
+
+  function resetFilters() {
+    setDraftFilters({});
+    onApply?.({});
+  }
+
+  function saveFilters() {
+    onApply?.(draftFilters);
+    setIsOpen(false);
+  }
 
   return (
     <>
@@ -63,34 +104,39 @@ export default function SeafoodFilterDrawer() {
             </div>
 
             <div className="filter-drawer-body">
-              <a href="#">Reset All</a>
+              <button className="filter-reset" type="button" onClick={resetFilters}>
+                Reset All
+              </button>
 
-              <section className="filter-section expanded">
-                <button type="button">
-                  Product Type
-                  <Chevron open />
-                </button>
-                <div className="filter-options">
-                  {productTypes.map((type) => (
-                    <label key={type}>
-                      <input type="radio" name="product-type" />
-                      <span>{type}</span>
-                    </label>
-                  ))}
-                </div>
-              </section>
+              {filterGroups.map((group) => {
+                const isExpanded = openGroups.includes(group.name);
 
-              {filterGroups.map((group) => (
-                <section className="filter-section" key={group}>
-                  <button type="button">
-                    {group}
-                    <Chevron />
+                return (
+                <section className="filter-section" key={group.name}>
+                  <button type="button" onClick={() => toggleGroup(group.name)}>
+                    {group.name}
+                    <Chevron open={isExpanded} />
                   </button>
+                  {isExpanded && (
+                    <div className="filter-options">
+                      {group.options.map((option) => (
+                        <label key={option}>
+                          <input
+                            type="checkbox"
+                            checked={draftFilters[group.name]?.includes(option) ?? false}
+                            onChange={() => toggleOption(group.name, option)}
+                          />
+                          <span>{option}</span>
+                        </label>
+                      ))}
+                    </div>
+                  )}
                 </section>
-              ))}
+                );
+              })}
             </div>
 
-            <button className="filter-save" type="button" onClick={() => setIsOpen(false)}>
+            <button className="filter-save" type="button" onClick={saveFilters}>
               Save & Close
             </button>
           </aside>

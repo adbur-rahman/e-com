@@ -1,4 +1,5 @@
-import SeafoodFilterDrawer from "@/components/SeafoodFilterDrawer";
+import Image from "next/image";
+import FishProductBrowser from "@/components/FishProductBrowser";
 
 const fishProducts = [
   {
@@ -168,21 +169,14 @@ const fishProducts = [
   },
 ];
 
-function HeartIcon() {
-  return (
-    <svg viewBox="0 0 24 24" aria-hidden="true">
-      <path d="M12 20.2 5.8 14C2 10.2 4.6 4 9.9 5.1c.9.2 1.7.7 2.1 1.4.5-.7 1.2-1.2 2.1-1.4 5.3-1.1 7.9 5.1 4.1 8.9L12 20.2Z" />
-    </svg>
-  );
-}
-
-function SnowflakeIcon() {
-  return (
-    <svg viewBox="0 0 24 24" aria-hidden="true">
-      <path d="M12 3v18M5.6 6.2l12.8 11.6M18.4 6.2 5.6 17.8M4 12h16" />
-    </svg>
-  );
-}
+const fishCategories = [
+  { name: "Salmon", image: "/fish-category-salmon.gif", href: "#" },
+  { name: "Tuna", image: "/fish-category-tuna.gif", href: "#" },
+  { name: "Grouper", image: "/fish-category-grouper.gif", href: "#" },
+  { name: "Monkfish", image: "/fish-category-monkfish.gif", href: "#" },
+  { name: "Sole", image: "/fish-category-sole.gif", href: "#" },
+  { name: "Hamachi Kingfish", image: "/fish-category-kingfish.gif", href: "#" },
+];
 
 export const metadata = {
   title: "Fish | Honest Catch",
@@ -191,87 +185,62 @@ export const metadata = {
 
 export default function FishPage() {
   return (
-    <section className="plp-page">
-      <div className="plp-toolbar">
-        <SeafoodFilterDrawer />
+    <>
+      <FishIntro />
+      <section className="plp-page">
+        <FishProductBrowser products={fishProducts} />
+      </section>
+    </>
+  );
+}
 
-        <div className="plp-controls">
-          <span>77 Products</span>
-          <button className="sort-button" type="button">
-            Sort by
-            <svg viewBox="0 0 24 24" aria-hidden="true">
-              <path d="m6 9 6 6 6-6" />
-            </svg>
-          </button>
+function FishIntro() {
+  return (
+    <section className="fish-intro">
+      <div className="fish-intro-hero">
+        <div className="fish-intro-image">
+          <Image
+            src="/fish-intro-hero.jpg"
+            alt="Fresh fish resting on ice"
+            fill
+            priority
+            sizes="(max-width: 1024px) 100vw, 50vw"
+          />
+        </div>
+        <div className="fish-intro-copy">
+          <div>
+            <h1>Buy fish online</h1>
+            <p>
+              When purchasing fish from HONEST CATCH, you&apos;ll find
+              sustainable, premium quality, and maximum flavor. Explore our
+              handpicked selection of premium seafood and fish products in our
+              online shop. Only fish that meet our high standards for
+              sustainable fishing or aquaculture, premium quality, and
+              exceptional flavor earn a spot in our collection. It&apos;s no
+              wonder we supply Germany&apos;s top chefs. Discover for yourself
+              how easy it is to buy fish online, ensuring an unparalleled
+              culinary experience.
+            </p>
+          </div>
         </div>
       </div>
 
-      <div className="plp-grid">
-        {fishProducts.slice(0, 2).map((product) => (
-          <article className="plp-card" key={product.name}>
-            <ProductImage product={product} />
-            <ProductInfo product={product} />
-          </article>
+      <nav className="fish-category-strip" aria-label="Browse fish categories">
+        {fishCategories.map((category) => (
+          <a href={category.href} key={category.name} aria-label={category.name}>
+            <span className="fish-category-image">
+              <Image
+                src={category.image}
+                alt=""
+                width={1024}
+                height={1024}
+                unoptimized
+              />
+            </span>
+            <span className="fish-category-name">{category.name}</span>
+          </a>
         ))}
-
-        <article className="plp-promo fish-promo">
-          <div className="plp-promo-art">
-            <span>FISH</span>
-            <strong>QUIZ</strong>
-            <em>?</em>
-          </div>
-          <h2>Take part in our fish quiz!</h2>
-          <p>Find your perfect fish</p>
-          <a href="#">Participate now</a>
-        </article>
-
-        {fishProducts.slice(2).map((product) => (
-          <article className="plp-card" key={product.name}>
-            <ProductImage product={product} />
-            <ProductInfo product={product} />
-          </article>
-        ))}
-      </div>
+      </nav>
     </section>
-  );
-}
-
-function ProductImage({ product }) {
-  return (
-    <div className="plp-image">
-      <span className="plp-freeze">
-        <SnowflakeIcon />
-      </span>
-      {product.badge && (
-        <span className={`plp-badge ${product.badge === "Sold out" ? "sold-out" : ""}`}>
-          {product.badge}
-        </span>
-      )}
-      {product.certified && <span className="plp-certified">{product.certified}</span>}
-      <a
-        href={`/seafood/${product.slug}`}
-        className="plp-plate"
-        style={{ backgroundImage: `url("${product.image}")` }}
-        aria-label={`View ${product.name}`}
-      ></a>
-      <button type="button" className="plp-heart" aria-label={`Save ${product.name}`}>
-        <HeartIcon />
-      </button>
-    </div>
-  );
-}
-
-function ProductInfo({ product }) {
-  return (
-    <div className="plp-info">
-      <a href={`/seafood/${product.slug}`}>
-        <h2>{product.name}</h2>
-      </a>
-      <p>{product.detail}</p>
-      <div className="plp-price">
-        <strong>{product.price}</strong>
-        {product.unit && <span>{product.unit}</span>}
-      </div>
-    </div>
   );
 }
