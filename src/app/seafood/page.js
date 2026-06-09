@@ -1,3 +1,4 @@
+import Image from "next/image";
 import FishProductBrowser from "@/components/FishProductBrowser";
 
 const seafoodProducts = [
@@ -213,8 +214,99 @@ export const metadata = {
 
 export default function SeafoodPage() {
   return (
-    <section className="plp-page">
-      <FishProductBrowser products={seafoodCatalog} showQuiz={false} />
+    <>
+      <SeafoodIntro />
+      <section className="plp-page">
+        <FishProductBrowser products={seafoodCatalog} showQuiz={false} />
+        <SeafoodAdvantages />
+      </section>
+    </>
+  );
+}
+
+function SeafoodAdvantages() {
+  return (
+    <section className="fish-advantages seafood-advantages">
+      <div className="fish-advantages-copy">
+        <h2>Buy honest seafood online at HONEST CATCH</h2>
+        <p>
+          Dive into the world of honest seafood! As experts who farm{" "}
+          <a href="#">shrimp</a> ourselves, we know exactly what is important.
+          With transparent origins and environmentally friendly selection, we
+          guarantee fresh seafood with the highest quality standards. We
+          always pay attention to sustainable fishing methods and secure
+          stocks. Discover delicacies from the sea and sustainable aquacultures
+          and be inspired by the best seafood <a href="#">recipes</a> for
+          culinary highlights. In our How-To guides, you&apos;ll find helpful
+          tips on <a href="#">storage</a> and <a href="#">defrosting</a>, as
+          well as plenty of ideas and tricks for preparing seafood and more.
+          Trust in first-class products that have already won over the best
+          chefs in Germany. Order conveniently from home and receive fresh,
+          first-class seafood delivered directly to your doorstep. For
+          culinary pleasure with a clear conscience - buy seafood online now
+          at HONEST CATCH!
+        </p>
+      </div>
+      <div className="fish-advantages-image">
+        <Image
+          src="/seafood-advantages.jpg"
+          alt="A platter filled with shrimp and seafood"
+          fill
+          sizes="(max-width: 1024px) 100vw, 38vw"
+        />
+      </div>
+    </section>
+  );
+}
+
+const seafoodCategories = [
+  { name: "Shrimp", image: "/seafood-category-shrimp.gif" },
+  { name: "Shellfish", image: "/seafood-category-shellfish.png" },
+  { name: "Octopus", image: "/seafood-category-octopus.gif" },
+  { name: "Crustaceans", image: "/seafood-category-crustaceans.gif" },
+];
+
+function SeafoodIntro() {
+  return (
+    <section className="fish-intro seafood-intro">
+      <div className="fish-intro-hero">
+        <div className="fish-intro-image">
+          <div
+            className="seafood-intro-photo"
+            role="img"
+            aria-label="A table filled with fresh seafood dishes"
+          ></div>
+        </div>
+        <div className="fish-intro-copy">
+          <div>
+            <h1>Seafood - discover shrimp, lobster, crayfish &amp; much more</h1>
+            <p>
+              Our mission is sustainable fish and seafood of the best quality.
+              That&apos;s why all seafood comes from fishermen who, like us,
+              are committed to sustainable consumption to protect our seas and
+              nature. We even breed our Bavarian shrimp ourselves. It&apos;s
+              not without reason that real gourmets rely on our products.
+            </p>
+          </div>
+        </div>
+      </div>
+
+      <nav className="fish-category-strip seafood-category-strip" aria-label="Browse seafood categories">
+        {seafoodCategories.map((category) => (
+          <a href="#" key={category.name} aria-label={category.name}>
+            <span className="fish-category-image seafood-category-image">
+              <Image
+                src={category.image}
+                alt=""
+                width={1000}
+                height={1000}
+                unoptimized
+              />
+            </span>
+            <span className="fish-category-name">{category.name}</span>
+          </a>
+        ))}
+      </nav>
     </section>
   );
 }

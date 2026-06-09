@@ -162,11 +162,17 @@ ul {
   color: var(--ocean-blue);
 }
 
+.nav-categories .has-mega:hover > a,
+.nav-categories .has-mega:focus-within > a {
+  color: #252525;
+  font-weight: 800;
+}
+
 .mega-menu {
-  height: min(674px, calc(100vh - 116px));
+  height: min(580px, calc(100vh - 100px));
   background: var(--white);
   display: grid;
-  grid-template-columns: 19% 33% 29% 19%;
+  grid-template-columns: 19.6% 34.8% 28.8% 16.8%;
   position: absolute;
   top: 100%;
   right: 0;
@@ -189,21 +195,22 @@ ul {
 .mega-ambient {
   background-position: center;
   background-size: cover;
-  filter: blur(2px);
+  filter: blur(5px);
   min-width: 0;
+  opacity: 0.62;
 }
 
 .mega-links {
-  padding: 58px 56px;
+  padding: 52px 68px;
 }
 
 .mega-links a {
   min-height: auto;
   color: #0d1b2a;
   display: block;
-  font-size: 21px;
+  font-size: 19px;
   font-weight: 400;
-  margin-bottom: 31px;
+  margin-bottom: 25px;
 }
 
 .mega-links a:hover {
@@ -212,22 +219,13 @@ ul {
 
 .mega-collage {
   background: #efefef;
-  display: grid;
-  grid-template-columns: repeat(3, minmax(0, 1fr));
-  align-content: start;
-  gap: 18px 22px;
+  position: relative;
   overflow: hidden;
-  padding: 8px 14px 28px;
 }
 
-.mega-collage span {
-  aspect-ratio: 1;
-  border: 2px solid #151515;
-  border-radius: 50%;
-  background-color: #f7f7f7;
-  background-position: center;
-  background-size: cover;
-  box-shadow: 0 7px 13px rgba(0, 0, 0, 0.18);
+.mega-collage img {
+  object-fit: cover;
+  object-position: center top;
 }
 
 .mega-promo {
@@ -235,9 +233,10 @@ ul {
   color: rgba(255, 255, 255, 0.82);
   display: flex;
   align-items: center;
-  padding: 54px;
+  padding: 46px;
   position: relative;
   overflow: hidden;
+  filter: blur(1.4px);
 }
 
 .mega-promo::before {
@@ -252,7 +251,7 @@ ul {
 }
 
 .mega-promo p {
-  font-size: 20px;
+  font-size: 18px;
   line-height: 1.55;
   max-width: 280px;
 }
@@ -1631,6 +1630,38 @@ ul {
   text-align: center;
 }
 
+.seafood-intro .fish-intro-copy h1 {
+  max-width: 650px;
+}
+
+.seafood-intro-photo {
+  width: 100%;
+  height: 100%;
+  min-height: inherit;
+  background-image: url("/seafood-intro-hero.jpg");
+  background-position: center;
+  background-size: cover;
+}
+
+.seafood-category-strip {
+  grid-template-columns: repeat(4, minmax(0, 200px));
+  justify-content: center;
+  gap: clamp(32px, 4vw, 72px);
+  padding-inline: clamp(40px, 12vw, 260px);
+}
+
+.seafood-category-image {
+  display: grid;
+  place-items: center;
+  background: #fff;
+}
+
+.seafood-category-image img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
 .plp-page {
   width: min(100% - 80px, 1725px);
   margin: 0 auto;
@@ -2214,6 +2245,15 @@ ul {
   object-fit: cover;
 }
 
+.seafood-advantages {
+  margin-top: 74px;
+  margin-bottom: 28px;
+}
+
+.seafood-advantages .fish-advantages-copy h2 {
+  max-width: 680px;
+}
+
 .filter-save {
   border: 0;
   background: #caa57b;
@@ -2651,6 +2691,11 @@ ul {
     scroll-snap-align: start;
   }
 
+  .seafood-category-strip {
+    grid-template-columns: repeat(4, 145px);
+    justify-content: start;
+  }
+
   .fish-advantages {
     grid-template-columns: 1fr;
     gap: 24px;
@@ -2944,6 +2989,10 @@ ul {
 
   .fish-category-strip a {
     gap: 10px;
+  }
+
+  .seafood-category-strip {
+    grid-template-columns: repeat(4, 112px);
   }
 
   .fish-category-name {

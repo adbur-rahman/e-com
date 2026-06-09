@@ -26,48 +26,24 @@ export const metadata = {
 const navItems = [
   { label: "Seafood", href: "/seafood", menu: "seafood" },
   { label: "Fish", href: "/fish", menu: "fish" },
-  { label: "Lobster", href: "#" },
-  { label: "Shrimp", href: "#" },
-  { label: "Caviar", href: "#" },
-  { label: "Recipes", href: "#" },
-  { label: "About", href: "#" },
+  { label: "Meat", href: "#" },
+  { label: "Delicacies", href: "#" },
+  { label: "Offers", href: "#" },
+  { label: "Wholesale", href: "#" },
+  { label: "World of pleasure", href: "#" },
+  { label: "About Us", href: "#" },
 ];
 
 const megaMenus = {
   seafood: {
     links: ["ALL Seafood", "Shrimp", "Crustaceans", "Squids", "Shellfish"],
-    ambient:
-      "https://images.unsplash.com/photo-1565680018434-b513d5e5fd47?auto=format&fit=crop&w=800&q=75",
-    images: [
-      "https://images.unsplash.com/photo-1565680018434-b513d5e5fd47?auto=format&fit=crop&w=400&q=85",
-      "https://images.unsplash.com/photo-1559737558-2f5a35f4523b?auto=format&fit=crop&w=400&q=85",
-      "https://images.unsplash.com/photo-1606851091880-ca6c8f31f31f?auto=format&fit=crop&w=400&q=85",
-      "https://images.unsplash.com/photo-1498654896293-37aacf113fd9?auto=format&fit=crop&w=400&q=85",
-      "https://images.unsplash.com/photo-1563379091339-03246963d29a?auto=format&fit=crop&w=400&q=85",
-      "https://images.unsplash.com/photo-1580109802681-872f0c179b22?auto=format&fit=crop&w=400&q=85",
-      "https://images.unsplash.com/photo-1599487488170-d11ec9c172f0?auto=format&fit=crop&w=400&q=85",
-      "https://images.unsplash.com/photo-1606851091851-e8c8c0fca5ba?auto=format&fit=crop&w=400&q=85",
-      "https://images.unsplash.com/photo-1615141982883-c7ad0e69fd62?auto=format&fit=crop&w=400&q=85",
-      "https://images.unsplash.com/photo-1565680018434-b513d5e5fd47?auto=format&fit=crop&w=401&q=85",
-      "https://images.unsplash.com/photo-1606851091880-ca6c8f31f31f?auto=format&fit=crop&w=401&q=85",
-      "https://images.unsplash.com/photo-1559737558-2f5a35f4523b?auto=format&fit=crop&w=401&q=85",
-    ],
+    ambient: "/fish-intro-hero.jpg",
+    collage: "/mega-seafood-collage.png",
   },
   fish: {
     links: ["ALL Fish", "Fish raw", "Smoked fish", "Canned fish", "Caviar"],
-    ambient:
-      "https://images.unsplash.com/photo-1519708227418-c8fd9a32b7a2?auto=format&fit=crop&w=800&q=75",
-    images: [
-      "https://images.unsplash.com/photo-1599084993091-1cb5c0721cc6?auto=format&fit=crop&w=400&q=85",
-      "https://images.unsplash.com/photo-1519708227418-c8fd9a32b7a2?auto=format&fit=crop&w=400&q=85",
-      "https://images.unsplash.com/photo-1467003909585-2f8a72700288?auto=format&fit=crop&w=400&q=85",
-      "https://images.unsplash.com/photo-1579871494447-9811cf80d66c?auto=format&fit=crop&w=400&q=85",
-      "https://images.unsplash.com/photo-1607301405390-d831c242f59d?auto=format&fit=crop&w=400&q=85",
-      "https://images.unsplash.com/photo-1580476262798-bddd9f4b7369?auto=format&fit=crop&w=400&q=85",
-      "https://images.unsplash.com/photo-1559847844-5315695dadae?auto=format&fit=crop&w=400&q=85",
-      "https://images.unsplash.com/photo-1501595091296-3aa970afb3ff?auto=format&fit=crop&w=400&q=85",
-      "https://images.unsplash.com/photo-1544943910-4c1dc44aab44?auto=format&fit=crop&w=400&q=85",
-    ],
+    ambient: "/fish-intro-hero.jpg",
+    collage: "/mega-fish-collage.png",
   },
 };
 
@@ -406,12 +382,7 @@ function MegaMenu({ menu }) {
         ))}
       </div>
       <div className="mega-collage">
-        {menu.images.map((image, index) => (
-          <span
-            key={`${image}-${index}`}
-            style={{ backgroundImage: `url("${image}")` }}
-          ></span>
-        ))}
+        <Image src={menu.collage} alt="" fill sizes="30vw" />
       </div>
       <div className="mega-promo">
         <p>Premium cuts, carefully sourced, ready for your next memorable meal.</p>
